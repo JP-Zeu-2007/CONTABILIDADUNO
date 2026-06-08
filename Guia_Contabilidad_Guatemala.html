@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Contabilidad I — Guatemala</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=Barlow:wght@300;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #1a3a5c;
+    --azul-claro: #2563a8;
+    --celeste: #4a9eca;
+    --verde: #1a7a4a;
+    --verde-claro: #22c55e;
+    --rojo: #c0392b;
+    --rojo-claro: #ef4444;
+    --dorado: #d97706;
+    --bg: #f5f0e8;
+    --bg2: #ede8dc;
+    --bg3: #e0d9cc;
+    --texto: #1c1917;
+    --texto2: #44403c;
+    --borde: #c4bfb5;
+    --sombra: rgba(26,58,92,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--bg);
+    color: var(--texto);
+    line-height: 1.7;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: var(--azul);
+    color: #fff;
+    padding: 60px 40px 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 30px,
+      rgba(255,255,255,0.03) 30px,
+      rgba(255,255,255,0.03) 31px
+    );
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; position: relative; }
+  .hero-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--celeste);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--celeste); }
+  .hero p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    max-width: 600px;
+    font-weight: 300;
+  }
+
+  /* ===== NAV ÍNDICE ===== */
+  .nav-temas {
+    background: var(--azul-claro);
+    padding: 0 40px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav-temas::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.65);
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 14px 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .nav-btn:hover { color: #fff; border-color: rgba(255,255,255,0.4); }
+  .nav-btn.active { color: #fff; border-color: var(--celeste); }
+
+  /* ===== MAIN ===== */
+  .main { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* ===== SECCIÓN ===== */
+  .seccion {
+    display: none;
+    animation: fadeIn 0.35s ease;
+  }
+  .seccion.visible { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: none; } }
+
+  .sec-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--borde);
+  }
+  .sec-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #fff;
+    background: var(--azul);
+    padding: 4px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+    margin-top: 6px;
+  }
+  .sec-title { font-family: 'Libre Baskerville', serif; font-size: 26px; line-height: 1.3; }
+  .sec-sub { color: var(--texto2); font-size: 15px; margin-top: 4px; font-weight: 300; }
+
+  /* ===== TARJETAS ===== */
+  .card {
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px var(--sombra);
+  }
+  .card h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 17px;
+    margin-bottom: 12px;
+    color: var(--azul);
+  }
+  .card p, .card li { font-size: 15px; color: var(--texto2); }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; }
+
+  /* ===== T-GRAFICA ===== */
+  .t-container { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0; }
+  .t-cuenta {
+    flex: 1; min-width: 220px;
+    border: 2px solid var(--azul);
+    border-radius: 6px;
+    overflow: hidden;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+  }
+  .t-nombre {
+    background: var(--azul);
+    color: #fff;
+    text-align: center;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .t-cuerpo { display: flex; }
+  .t-lado {
+    flex: 1;
+    padding: 12px;
+    min-height: 90px;
+  }
+  .t-lado:first-child { border-right: 2px solid var(--azul); }
+  .t-lado-titulo {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .cargo { color: var(--verde); }
+  .abono { color: var(--rojo); }
+  .t-monto { font-size: 14px; }
+
+  /* ===== FÓRMULAS ===== */
+  .formula-box {
+    background: linear-gradient(135deg, var(--azul) 0%, var(--azul-claro) 100%);
+    border-radius: 8px;
+    padding: 20px 24px;
+    color: #fff;
+    margin: 16px 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+  }
+  .formula-box .label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--celeste); margin-bottom: 8px; display: block; }
+  .formula-box .expr { font-size: 17px; font-weight: 600; }
+  .formula-box .desc { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 6px; font-family: 'Barlow', sans-serif; }
+
+  /* ===== PARTIDA CONTABLE ===== */
+  .partida {
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .partida-header {
+    background: var(--bg2);
+    padding: 8px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--azul);
+    border-bottom: 1px solid var(--borde);
+  }
+  .partida table { width: 100%; border-collapse: collapse; }
+  .partida td { padding: 7px 16px; border-bottom: 1px solid #f0ece4; }
+  .partida tr:last-child td { border-bottom: none; }
+  .partida .cuenta-cargo { padding-left: 16px; color: var(--texto); font-weight: 500; }
+  .partida .cuenta-abono { padding-left: 48px; color: var(--texto2); }
+  .partida .monto { text-align: right; font-family: 'IBM Plex Mono', monospace; }
+  .partida .monto.debe { color: var(--verde); }
+  .partida .monto.haber { color: var(--rojo); }
+  .partida .col-label { color: #999; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; background: var(--bg3); }
+
+  /* ===== CALCULADORA IVA ===== */
+  .calc-iva {
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 8px var(--sombra);
+    margin: 20px 0;
+  }
+  .calc-iva h3 { font-family: 'Libre Baskerville', serif; font-size: 17px; color: var(--azul); margin-bottom: 16px; }
+  .calc-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+  .calc-tab {
+    padding: 8px 16px;
+    border: 2px solid var(--borde);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    background: var(--bg2);
+    color: var(--texto2);
+    transition: all 0.2s;
+  }
+  .calc-tab.on { background: var(--azul); border-color: var(--azul); color: #fff; }
+  .calc-row { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 180px; }
+  .calc-field label { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--texto2); }
+  .calc-field input {
+    padding: 10px 14px;
+    border: 2px solid var(--borde);
+    border-radius: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 15px;
+    background: var(--bg);
+    color: var(--texto);
+    transition: border-color 0.2s;
+  }
+  .calc-field input:focus { outline: none; border-color: var(--azul-claro); }
+  .calc-btn {
+    padding: 10px 22px;
+    background: var(--azul);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+  .calc-btn:hover { background: var(--azul-claro); }
+  .calc-result {
+    margin-top: 16px;
+    display: none;
+    background: var(--bg2);
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+  }
+  .calc-result.show { display: block; }
+  .calc-result .r-row { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid var(--borde); }
+  .calc-result .r-row:last-child { border-bottom: none; font-weight: 700; font-size: 15px; }
+  .calc-result .r-lbl { color: var(--texto2); }
+  .calc-result .r-val { color: var(--azul); }
+
+  /* ===== TABLA CUENTAS ===== */
+  .tabla-cuentas table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .tabla-cuentas th {
+    background: var(--azul);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .tabla-cuentas td { padding: 9px 14px; border-bottom: 1px solid var(--borde); }
+  .tabla-cuentas tr:hover td { background: var(--bg2); }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.5px;
+  }
+  .badge-cargo { background: #dcfce7; color: var(--verde); }
+  .badge-abono { background: #fee2e2; color: var(--rojo); }
+  .badge-activo { background: #dbeafe; color: var(--azul-claro); }
+  .badge-pasivo { background: #fef3c7; color: var(--dorado); }
+  .badge-capital { background: #f3e8ff; color: #7c3aed; }
+  .badge-ingreso { background: #dcfce7; color: var(--verde); }
+  .badge-gasto { background: #fee2e2; color: var(--rojo-claro); }
+
+  /* ===== TIPS ===== */
+  .tip {
+    border-left: 4px solid var(--celeste);
+    background: #eff8ff;
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #1e3a5f;
+  }
+  .tip strong { display: block; margin-bottom: 4px; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .aviso {
+    border-left: 4px solid var(--dorado);
+    background: #fffbeb;
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #7c4a00;
+  }
+  .aviso strong { display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  /* ===== GRID 2COL ===== */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  @media(max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+
+  /* ===== EJERICICIO COMPLETO ===== */
+  .paso {
+    counter-increment: pasos;
+    background: #fff;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .paso-header {
+    background: var(--bg2);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--borde);
+  }
+  .paso-num {
+    width: 28px; height: 28px;
+    background: var(--azul);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .paso-titulo { font-weight: 700; font-size: 15px; flex: 1; }
+  .paso-flecha { font-size: 12px; color: var(--texto2); transition: transform 0.2s; }
+  .paso-flecha.open { transform: rotate(180deg); }
+  .paso-body { padding: 20px; display: none; }
+  .paso-body.open { display: block; }
+
+  /* ===== DEPRECIATION TABLE ===== */
+  .dep-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0; }
+  .dep-table th { background: var(--azul); color: #fff; padding: 9px 14px; text-align: left; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-family: 'IBM Plex Mono', monospace; }
+  .dep-table td { padding: 8px 14px; border-bottom: 1px solid var(--borde); }
+  .dep-table tr:last-child td { border-bottom: none; font-weight: 700; background: var(--bg2); }
+
+  /* ===== SALDO POSITIVO/NEGATIVO ===== */
+  .saldo-box { display: flex; gap: 16px; margin: 16px 0; flex-wrap: wrap; }
+  .saldo-item {
+    flex: 1; min-width: 160px;
+    border-radius: 8px;
+    padding: 18px 20px;
+    text-align: center;
+  }
+  .saldo-item .s-titulo { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .saldo-item .s-monto { font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 700; }
+  .saldo-item.deudor { background: #dcfce7; color: var(--verde); }
+  .saldo-item.acreedor { background: #fee2e2; color: var(--rojo); }
+
+  /* ===== SCROLL to top ===== */
+  .scroll-top {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--azul);
+    color: #fff;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 100;
+    text-decoration: none;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+  .scroll-top:hover { opacity: 1; }
+
+  hr.sec-div { border: none; border-top: 1px solid var(--borde); margin: 28px 0; }
+  p { margin-bottom: 12px; }
+  h4 { font-family: 'Libre Baskerville', serif; font-size: 16px; margin: 20px 0 10px; color: var(--azul); }
+  .mono { font-family: 'IBM Plex Mono', monospace; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">▪ CONTABILIDAD I ▪ Universidad Mariano Gálvez ▪ Guatemala</div>
+    <h1>Guía Completa de<br><span>Contabilidad I</span></h1>
+    <p>Todos los temas del curso explicados paso a paso: teoría, fórmulas, ejemplos y un ejercicio general integrado. Basada en la legislación guatemalteca (SAT, IGSS, ISR).</p>
+  </div>
+</div>
+
+<nav class="nav-temas">
+  <button class="nav-btn active" onclick="mostrar(0,this)">Fundamentos</button>
+  <button class="nav-btn" onclick="mostrar(1,this)">Apertura</button>
+  <button class="nav-btn" onclick="mostrar(2,this)">IVA</button>
+  <button class="nav-btn" onclick="mostrar(3,this)">Compras y Ventas</button>
+  <button class="nav-btn" onclick="mostrar(4,this)">Dev. y Desc.</button>
+  <button class="nav-btn" onclick="mostrar(5,this)">Caja Chica</button>
+  <button class="nav-btn" onclick="mostrar(6,this)">Sueldos</button>
+  <button class="nav-btn" onclick="mostrar(7,this)">Cuenta Personal</button>
+  <button class="nav-btn" onclick="mostrar(8,this)">Ajustes</button>
+  <button class="nav-btn" onclick="mostrar(9,this)">Ejercicio General</button>
+</nav>
+
+<div class="main">
+
+<!-- ========== SECCIÓN 0: FUNDAMENTOS ========== -->
+<div class="seccion visible" id="sec0">
+  <div class="sec-header">
+    <span class="sec-num">TEMA 01</span>
+    <div>
+      <div class="sec-title">Fundamentos de Contabilidad</div>
+      <div class="sec-sub">Teoría del cargo y abono, T-gráficas y nomenclatura guatemalteca</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>¿Qué es la Contabilidad?</h3>
+    <p>La contabilidad es el sistema que registra, clasifica y resume todas las operaciones económicas de una empresa, expresándolas en términos monetarios (en Guatemala: Quetzales, <strong>Q</strong>).</p>
+    <p>Cada operación económica se registra en un <strong>asiento contable</strong> (también llamado <em>partida</em>), siguiendo el principio de <strong>partida doble</strong>: toda operación tiene su origen (de dónde viene el dinero) y su destino (a dónde va). Por eso siempre se afectan al menos dos cuentas, y el total de <em>débitos</em> siempre debe ser igual al total de <em>créditos</em>.</p>
+  </div>
+
+  <h4>La Teoría del Cargo y el Abono</h4>
+  <div class="card">
+    <p>En contabilidad, cada cuenta tiene dos lados. El lado izquierdo se llama <strong>DEBE</strong> (cargo/débito) y el lado derecho se llama <strong>HABER</strong> (abono/crédito). Esto se representa con la famosa "T-Gráfica":</p>
+
+    <div class="t-container">
+      <div class="t-cuenta">
+        <div class="t-nombre">Nombre de la Cuenta</div>
+        <div class="t-cuerpo">
+          <div class="t-lado">
+            <span class="t-lado-titulo cargo">DEBE (Cargo)</span>
+            <div class="t-monto">← izquierda</div>
+          </div>
+          <div class="t-lado">
+            <span class="t-lado-titulo abono">HABER (Abono)</span>
+            <div class="t-monto">derecha →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p>La regla fundamental es:</p>
+    <ul>
+      <li><strong>Cuentas de ACTIVO</strong> (lo que tengo): Aumentan con CARGO (izquierda), disminuyen con ABONO.</li>
+      <li><strong>Cuentas de PASIVO</strong> (lo que debo): Aumentan con ABONO (derecha), disminuyen con CARGO.</li>
+      <li><strong>Cuentas de CAPITAL</strong> (lo del dueño): Aumentan con ABONO, disminuyen con CARGO.</li>
+      <li><strong>Cuentas de INGRESO</strong> (ventas, rentas): Aumentan con ABONO.</li>
+      <li><strong>Cuentas de GASTO</strong> (sueldos, alquiler): Aumentan con CARGO.</li>
+    </ul>
+  </div>
+
+  <div class="aviso"><strong>⚡ Regla de oro — memorízala</strong>Si ves que una cuenta de ACTIVO tiene saldo en el DEBE → saldo DEUDOR (normal). Si una cuenta de PASIVO tiene saldo en el HABER → saldo ACREEDOR (normal). Un saldo del lado contrario se llama saldo CONTRA-NATURALEZA y debe analizarse.</div>
+
+  <h4>Ejemplo de T-Gráficas: Compra al contado de Q 5,600</h4>
+  <div class="t-container">
+    <div class="t-cuenta">
+      <div class="t-nombre">Compras (Activo/Gasto)</div>
+      <div class="t-cuerpo">
+        <div class="t-lado">
+          <span class="t-lado-titulo cargo">DEBE</span>
+          <div class="t-monto">Q 5,000</div>
+        </div>
+        <div class="t-lado">
+          <span class="t-lado-titulo abono">HABER</span>
+          <div class="t-monto"></div>
+        </div>
+      </div>
+    </div>
+    <div class="t-cuenta">
+      <div class="t-nombre">IVA por Cobrar (Activo)</div>
+      <div class="t-cuerpo">
+        <div class="t-lado">
+          <span class="t-lado-titulo cargo">DEBE</span>
+          <div class="t-monto">Q 600</div>
+        </div>
+        <div class="t-lado">
+          <span class="t-lado-titulo abono">HABER</span>
+          <div class="t-monto"></div>
+        </div>
+      </div>
+    </div>
+    <div class="t-cuenta">
+      <div class="t-nombre">Caja y Bancos (Activo)</div>
+      <div class="t-cuerpo">
+        <div class="t-lado">
+          <span class="t-lado-titulo cargo">DEBE</span>
+          <div class="t-monto"></div>
+        </div>
+        <div class="t-lado">
+          <span class="t-lado-titulo abono">HABER</span>
+          <div class="t-monto">Q 5,600</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tip"><strong>📌 Nota</strong>Los Q 5,600 ya incluyen el IVA. Por eso los separamos: Q 5,000 de compra + Q 600 de IVA (12%). La suma DEBE (5,000+600) = HABER (5,600). ¡Siempre deben cuadrar!</div>
+
+  <hr class="sec-div">
+  <h4>Nomenclatura de Cuentas en Guatemala (SAT / PCG)</h4>
+  <div class="tabla-cuentas">
+    <table>
+      <tr>
+        <th>Cuenta</th>
+        <th>Tipo</th>
+        <th>Saldo normal</th>
+        <th>Descripción</th>
+      </tr>
+      <tr><td>Caja y Bancos</td><td><span class="badge badge-activo">Activo</span></td><td><span class="badge badge-cargo">Deudor (DEBE)</span></td><td>Efectivo y depósitos bancarios</td></tr>
+      <tr><td>Clientes</td><td><span class="badge badge-activo">Activo</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>Deudas a favor por ventas al crédito</td></tr>
+      <tr><td>Documentos por Cobrar</td><td><span class="badge badge-activo">Activo</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>Letras de cambio o pagarés a favor</td></tr>
+      <tr><td>IVA por Cobrar (Crédito Fiscal)</td><td><span class="badge badge-activo">Activo</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>IVA pagado en compras</td></tr>
+      <tr><td>Mercaderías / Inventario</td><td><span class="badge badge-activo">Activo</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>Artículos para la venta</td></tr>
+      <tr><td>Mobiliario y Equipo</td><td><span class="badge badge-activo">Activo</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>Escritorios, sillas, etc.</td></tr>
+      <tr><td>Vehículos</td><td><span class="badge badge-activo">Activo</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>Automóviles, camiones, motos</td></tr>
+      <tr><td>Equipo de Cómputo</td><td><span class="badge badge-activo">Activo</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>Computadoras, impresoras</td></tr>
+      <tr><td>Edificios</td><td><span class="badge badge-activo">Activo</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>Inmuebles de la empresa</td></tr>
+      <tr><td>Proveedores</td><td><span class="badge badge-pasivo">Pasivo</span></td><td><span class="badge badge-abono">Acreedor (HABER)</span></td><td>Deudas por mercadería comprada al crédito</td></tr>
+      <tr><td>Documentos por Pagar</td><td><span class="badge badge-pasivo">Pasivo</span></td><td><span class="badge badge-abono">Acreedor</span></td><td>Letras de cambio o pagarés a pagar</td></tr>
+      <tr><td>IVA por Pagar (Débito Fiscal)</td><td><span class="badge badge-pasivo">Pasivo</span></td><td><span class="badge badge-abono">Acreedor</span></td><td>IVA cobrado en ventas, se debe a SAT</td></tr>
+      <tr><td>Hipotecas</td><td><span class="badge badge-pasivo">Pasivo</span></td><td><span class="badge badge-abono">Acreedor</span></td><td>Préstamos garantizados con inmuebles</td></tr>
+      <tr><td>Capital / Cuenta Capital</td><td><span class="badge badge-capital">Capital</span></td><td><span class="badge badge-abono">Acreedor</span></td><td>Inversión del propietario</td></tr>
+      <tr><td>Cuenta Particular / Personal</td><td><span class="badge badge-capital">Capital</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>Retiros del propietario</td></tr>
+      <tr><td>Ventas</td><td><span class="badge badge-ingreso">Ingreso</span></td><td><span class="badge badge-abono">Acreedor</span></td><td>Ingresos por venta de mercadería (sin IVA)</td></tr>
+      <tr><td>Compras</td><td><span class="badge badge-gasto">Gasto/Costo</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>Costo de la mercadería comprada (sin IVA)</td></tr>
+      <tr><td>Sueldos (Venta / Admin)</td><td><span class="badge badge-gasto">Gasto</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>Planilla de empleados</td></tr>
+      <tr><td>Agua, Luz y Teléfono</td><td><span class="badge badge-gasto">Gasto</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>Servicios básicos</td></tr>
+      <tr><td>Alquiler</td><td><span class="badge badge-gasto">Gasto</span></td><td><span class="badge badge-cargo">Deudor</span></td><td>Renta de local o bodega</td></tr>
+      <tr><td>Depreciación Acumulada</td><td><span class="badge badge-activo">Activo (−)</span></td><td><span class="badge badge-abono">Acreedor</span></td><td>Contra-cuenta: reduce el activo</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ========== SECCIÓN 1: APERTURA ========== -->
+<div class="seccion" id="sec1">
+  <div class="sec-header">
+    <span class="sec-num">TEMA 02</span>
+    <div>
+      <div class="sec-title">Apertura Contable</div>
+      <div class="sec-sub">El primer asiento que registra los aportes del propietario al iniciar un negocio</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>¿Qué es la partida de apertura?</h3>
+    <p>Es el primer registro contable de un negocio. Refleja todo lo que el propietario aporta (activos: dinero, mobiliario, vehículos, mercadería, etc.) y las deudas que ya pesan sobre esos aportes (pasivos). La diferencia entre ambos es el <strong>Capital Inicial</strong>.</p>
+    <div class="formula-box">
+      <span class="label">Ecuación Contable Básica</span>
+      <div class="expr">ACTIVO = PASIVO + CAPITAL</div>
+      <div class="desc">Capital = Activos totales − Pasivos totales</div>
+    </div>
+  </div>
+
+  <h4>Los 3 casos de apertura</h4>
+  <div class="grid2">
+    <div class="card">
+      <h3>Caso 1 — Solo dinero</h3>
+      <p>El propietario aporta únicamente efectivo. Todo es suyo, no hay deudas.</p>
+      <p><strong>Ejemplo:</strong> El Sr. Mármol aporta Q.120,000 con cheque.</p>
+    </div>
+    <div class="card">
+      <h3>Caso 2 — Dinero y bienes</h3>
+      <p>Aporta efectivo y otros activos (muebles, vehículos). Todo sigue siendo suyo, sin deudas.</p>
+      <p><strong>Ejemplo:</strong> Q.22,500 efectivo + 3 Pick Up a Q.15,500 c/u.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Caso 3 — Bienes con deudas (el más común)</h3>
+    <p>Aporta activos, pero algunos tienen saldo pendiente de pago. Las deudas se registran como Pasivo (Proveedores, Documentos por Pagar, Hipotecas). El capital es la diferencia.</p>
+  </div>
+
+  <h4>Ejemplo Resuelto — Caso 3</h4>
+  <p>El Sr. Raúl Juárez inicia "El Jardín" el 18/03/20XX aportando: Efectivo Q.65,000 · 2 vehículos Q.80,000 · Equipo de Cómputo Q.18,000. Deudas: vehículos Q.25,000 (5 letras × Q.5,000) · equipo Q.15,000 pendiente.</p>
+
+  <div class="saldo-box">
+    <div class="saldo-item deudor">
+      <div class="s-titulo">Total Activo</div>
+      <div class="s-monto">Q 163,000</div>
+    </div>
+    <div class="saldo-item acreedor">
+      <div class="s-titulo">Total Pasivo</div>
+      <div class="s-monto">Q 40,000</div>
+    </div>
+    <div class="saldo-item" style="background:#ede9fe;color:#7c3aed;">
+      <div class="s-titulo">Capital</div>
+      <div class="s-monto">Q 123,000</div>
+    </div>
+  </div>
+
+  <div class="partida">
+    <div class="partida-header">PARTIDA No. 1 — 18/03/20XX — Apertura del negocio "El Jardín"</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Caja y Bancos</td><td class="monto debe">Q 65,000.00</td><td class="monto"></td></tr>
+      <tr><td class="cuenta-cargo">Vehículos</td><td class="monto debe">Q 80,000.00</td><td class="monto"></td></tr>
+      <tr><td class="cuenta-cargo">Equipo de Cómputo</td><td class="monto debe">Q 18,000.00</td><td class="monto"></td></tr>
+      <tr><td class="cuenta-abono">Documentos por Pagar (letras vehículos)</td><td class="monto"></td><td class="monto haber">Q 25,000.00</td></tr>
+      <tr><td class="cuenta-abono">Proveedores (equipo de cómputo)</td><td class="monto"></td><td class="monto haber">Q 15,000.00</td></tr>
+      <tr><td class="cuenta-abono">Juárez — Cuenta Capital</td><td class="monto"></td><td class="monto haber">Q 123,000.00</td></tr>
+      <tr><td><strong>TOTALES</strong></td><td class="monto debe"><strong>Q 163,000.00</strong></td><td class="monto haber"><strong>Q 163,000.00</strong></td></tr>
+    </table>
+  </div>
+  <div class="tip"><strong>✅ Regla de verificación</strong>DEBE = HABER siempre. Si no cuadra, hay un error.</div>
+</div>
+
+<!-- ========== SECCIÓN 2: IVA ========== -->
+<div class="seccion" id="sec2">
+  <div class="sec-header">
+    <span class="sec-num">TEMA 03</span>
+    <div>
+      <div class="sec-title">Impuesto al Valor Agregado (IVA)</div>
+      <div class="sec-sub">Decreto 27-92, tasa 12% — Crédito Fiscal vs. Débito Fiscal y Regularización</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>¿Qué es el IVA en Guatemala?</h3>
+    <p>El IVA es un impuesto del <strong>12%</strong> sobre el precio base de compras y ventas de mercaderías (Art. 10, Decreto 27-92). Se administra a través de la <strong>SAT</strong> (Superintendencia de Administración Tributaria).</p>
+    <ul>
+      <li><strong>Crédito Fiscal (IVA por Cobrar)</strong>: El IVA que NOSOTROS pagamos cuando COMPRAMOS. Es un activo, la SAT nos lo reconoce.</li>
+      <li><strong>Débito Fiscal (IVA por Pagar)</strong>: El IVA que cobramos a NUESTROS CLIENTES cuando VENDEMOS. Es un pasivo, se lo debemos a la SAT.</li>
+    </ul>
+  </div>
+
+  <h4>Las dos fórmulas clave del IVA</h4>
+  <div class="grid2">
+    <div class="formula-box">
+      <span class="label">Sacar precio SIN IVA (cuando ya lo incluye)</span>
+      <div class="expr">Precio con IVA ÷ 1.12 = Precio base</div>
+      <div class="desc">Ej: Q.5,600 ÷ 1.12 = Q.5,000 (precio base) → IVA = Q.600</div>
+    </div>
+    <div class="formula-box">
+      <span class="label">Calcular el IVA (cuando no lo incluye)</span>
+      <div class="expr">Precio base × 0.12 = IVA</div>
+      <div class="desc">Ej: Q.5,000 × 0.12 = Q.600 de IVA → total a pagar Q.5,600</div>
+    </div>
+  </div>
+
+  <div class="aviso"><strong>⚠️ ¡Muy importante!</strong>Los montos en los ejercicios del curso <strong>ya incluyen el IVA</strong>. Debes separarlo. Ejemplo: "Compra por Q.11,200" significa Q.10,000 de compra + Q.1,200 de IVA. Siempre divide entre 1.12 primero.</div>
+
+  <!-- CALCULADORA -->
+  <div class="calc-iva">
+    <h3>🧮 Calculadora IVA Interactiva</h3>
+    <div class="calc-tabs">
+      <button class="calc-tab on" onclick="setCalcMode('extraer',this)">Extraer IVA (precio incluye IVA)</button>
+      <button class="calc-tab" onclick="setCalcMode('agregar',this)">Agregar IVA (precio sin IVA)</button>
+    </div>
+    <div class="calc-row">
+      <div class="calc-field">
+        <label id="calc-lbl">Monto total (con IVA incluido)</label>
+        <input type="number" id="calc-input" placeholder="Ej: 11200" step="0.01">
+      </div>
+      <button class="calc-btn" onclick="calcularIVA()">Calcular</button>
+    </div>
+    <div class="calc-result" id="calc-result">
+      <div class="r-row"><span class="r-lbl" id="r1-lbl">Precio base (sin IVA)</span><span class="r-val" id="r1-val"></span></div>
+      <div class="r-row"><span class="r-lbl">IVA (12%)</span><span class="r-val" id="r2-val"></span></div>
+      <div class="r-row"><span class="r-lbl" id="r3-lbl">Total a registrar</span><span class="r-val" id="r3-val"></span></div>
+    </div>
+  </div>
+
+  <h4>Regularización del IVA</h4>
+  <div class="card">
+    <p>Al final del período contable (mes), la empresa compara:</p>
+    <ul>
+      <li><strong>IVA por Cobrar</strong> (total de compras del mes)</li>
+      <li><strong>IVA por Pagar</strong> (total de ventas del mes)</li>
+    </ul>
+    <p>Se registra una partida de regularización cruzando ambas cuentas, dejando una en cero:</p>
+    <ul>
+      <li>Si <strong>IVA por Pagar > IVA por Cobrar</strong> → la diferencia se paga a la SAT el siguiente mes.</li>
+      <li>Si <strong>IVA por Cobrar > IVA por Pagar</strong> → el excedente se traslada al siguiente período.</li>
+    </ul>
+  </div>
+
+  <h4>Ejemplo de Regularización</h4>
+  <p>Enero: Compras Q.12,880 (IVA por cobrar = Q.1,380) · Ventas Q.6,720 (IVA por pagar = Q.720)</p>
+  <div class="partida">
+    <div class="partida-header">REGULARIZACIÓN DEL IVA — 31/01/20XX</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">IVA por Pagar</td><td class="monto debe">Q 720.00</td><td class="monto"></td></tr>
+      <tr><td class="cuenta-abono">IVA por Cobrar</td><td class="monto"></td><td class="monto haber">Q 720.00</td></tr>
+      <tr><td colspan="3" style="padding:8px 16px; font-size:13px; color:#666;">Se regulariza el IVA: IVA por Cobrar supera al IVA por Pagar (saldo a favor = Q 660 se traslada al mes siguiente)</td></tr>
+    </table>
+  </div>
+  <div class="tip"><strong>📌 Resultado</strong>IVA por Pagar queda en Q.0. IVA por Cobrar queda con saldo restante de Q.660 (Q.1,380 − Q.720) para trasladar al siguiente mes.</div>
+</div>
+
+<!-- ========== SECCIÓN 3: COMPRAS Y VENTAS ========== -->
+<div class="seccion" id="sec3">
+  <div class="sec-header">
+    <span class="sec-num">TEMA 04</span>
+    <div>
+      <div class="sec-title">Compras y Ventas de Mercaderías</div>
+      <div class="sec-sub">Operaciones comerciales con separación del IVA según Decreto 27-92</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>🛒 Compras</h3>
+      <p>Adquisición de mercadería. El IVA generado se llama <strong>Crédito Fiscal = IVA por Cobrar</strong> (Art. 15, Decreto 27-92). Formas:</p>
+      <ul>
+        <li><strong>Al contado</strong>: acreedor es Caja y Bancos</li>
+        <li><strong>Al crédito</strong>: acreedor es Proveedores</li>
+        <li><strong>Con letras</strong>: acreedor es Documentos por Pagar (IVA puede pagarse en efectivo)</li>
+        <li><strong>Mixta</strong>: parte contado, parte crédito</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🏪 Ventas</h3>
+      <p>Entrega de mercadería a cambio de pago. El IVA generado se llama <strong>Débito Fiscal = IVA por Pagar</strong> (Art. 14, Decreto 27-92). Formas:</p>
+      <ul>
+        <li><strong>Al contado</strong>: deudor es Caja y Bancos</li>
+        <li><strong>Al crédito</strong>: deudor es Clientes</li>
+        <li><strong>Con letras</strong>: deudor es Documentos por Cobrar (IVA puede cobrarse en efectivo)</li>
+        <li><strong>Mixta</strong>: parte contado, parte crédito</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Ejemplos resueltos</h4>
+  <p><strong>Caso 1: Compra al contado Q.16,800 (incluye IVA)</strong><br>
+  Precio base: 16,800 ÷ 1.12 = <strong>Q.15,000</strong> · IVA: 15,000 × 0.12 = <strong>Q.1,800</strong></p>
+  <div class="partida">
+    <div class="partida-header">P#1 — Compra al contado</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Compras</td><td class="monto debe">Q 15,000.00</td><td></td></tr>
+      <tr><td class="cuenta-cargo">IVA por Cobrar</td><td class="monto debe">Q 1,800.00</td><td></td></tr>
+      <tr><td class="cuenta-abono">Caja y Bancos</td><td></td><td class="monto haber">Q 16,800.00</td></tr>
+    </table>
+  </div>
+
+  <p><strong>Caso 2: Venta al crédito Q.36,400 (incluye IVA)</strong><br>
+  Precio base: 36,400 ÷ 1.12 = <strong>Q.32,500</strong> · IVA: 32,500 × 0.12 = <strong>Q.3,900</strong></p>
+  <div class="partida">
+    <div class="partida-header">P#2 — Venta al crédito</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Clientes</td><td class="monto debe">Q 36,400.00</td><td></td></tr>
+      <tr><td class="cuenta-abono">Ventas</td><td></td><td class="monto haber">Q 32,500.00</td></tr>
+      <tr><td class="cuenta-abono">IVA por Pagar</td><td></td><td class="monto haber">Q 3,900.00</td></tr>
+    </table>
+  </div>
+
+  <p><strong>Caso 3: Compra mixta Q.21,280 — 60% crédito, 40% contado (con IVA)</strong><br>
+  Base: 21,280 ÷ 1.12 = Q.19,000 · IVA: Q.2,280 · Crédito: 21,280×60% = Q.12,768 · Contado: 21,280×40% = Q.8,512</p>
+  <div class="partida">
+    <div class="partida-header">P#3 — Compra mixta (60% crédito / 40% contado)</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Compras</td><td class="monto debe">Q 19,000.00</td><td></td></tr>
+      <tr><td class="cuenta-cargo">IVA por Cobrar</td><td class="monto debe">Q 2,280.00</td><td></td></tr>
+      <tr><td class="cuenta-abono">Proveedores</td><td></td><td class="monto haber">Q 12,768.00</td></tr>
+      <tr><td class="cuenta-abono">Caja y Bancos</td><td></td><td class="monto haber">Q 8,512.00</td></tr>
+    </table>
+  </div>
+  <div class="tip"><strong>✏️ Compra con letras de cambio</strong>Cuando se firman letras (documentos), la cuenta es <strong>Documentos por Pagar</strong> en lugar de Proveedores. A veces el IVA se paga en efectivo aunque la mercadería sea al crédito — en ese caso el IVA va contra Caja y Bancos.</div>
+</div>
+
+<!-- ========== SECCIÓN 4: DEV Y DESC ========== -->
+<div class="seccion" id="sec4">
+  <div class="sec-header">
+    <span class="sec-num">TEMA 05</span>
+    <div>
+      <div class="sec-title">Devoluciones y Descuentos</div>
+      <div class="sec-sub">Sobre compras y ventas — con y sin afectación de IVA</div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>↩ Devoluciones</h3>
+      <p>Se devuelve mercadería por ser diferente a la solicitada (calidad, color, marca). Afecta el IVA <strong>solo si la devolución ocurre dentro de los 60 días</strong> de la compra/venta original (Decreto 27-92).</p>
+      <ul>
+        <li>Devolución compra: <strong>Dev. y Rebaj. s/Compras</strong> (cuenta de abono)</li>
+        <li>Devolución venta: <strong>Dev. y Rebaj. s/Ventas</strong> (cuenta de cargo)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>💰 Descuentos</h3>
+      <p>Se dan en operaciones al <strong>crédito</strong> cuando el pago se realiza antes del vencimiento (pronto pago). Son operaciones <strong>financieras</strong> y <strong>NO afectan el IVA</strong>.</p>
+      <ul>
+        <li>Descuento en compra: <strong>Descuentos s/Compras</strong></li>
+        <li>Descuento en venta: <strong>Descuentos s/Ventas</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Devolución de compra dentro de 60 días (con IVA)</h4>
+  <p>El 05/dic se compró al crédito Q.11,200 (inc. IVA). El 15/ene se devuelve dentro del plazo.</p>
+  <p>Base: 11,200 ÷ 1.12 = Q.10,000 · IVA: Q.1,200</p>
+  <div class="partida">
+    <div class="partida-header">Devolución sobre Compra — con IVA (dentro de 60 días)</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Proveedores</td><td class="monto debe">Q 11,200.00</td><td></td></tr>
+      <tr><td class="cuenta-abono">Dev. y Rebaj. s/Compras</td><td></td><td class="monto haber">Q 10,000.00</td></tr>
+      <tr><td class="cuenta-abono">IVA por Cobrar</td><td></td><td class="monto haber">Q 1,200.00</td></tr>
+    </table>
+  </div>
+
+  <h4>Devolución de compra DESPUÉS de 60 días (sin IVA)</h4>
+  <p>El 07/dic se compró al contado Q.20,160. El 08/mar se devuelve — ya pasaron más de 60 días.</p>
+  <p>Base: 20,160 ÷ 1.12 = Q.18,000 · IVA: Q.2,160</p>
+  <div class="partida">
+    <div class="partida-header">Devolución sobre Compra — SIN IVA (fuera de 60 días)</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Caja y Bancos</td><td class="monto debe">Q 18,000.00</td><td></td></tr>
+      <tr><td class="cuenta-abono">Dev. y Rebaj. s/Compras</td><td></td><td class="monto haber">Q 18,000.00</td></tr>
+    </table>
+  </div>
+  <div class="aviso"><strong>⚠️ Fuera de 60 días</strong>No se puede recuperar el IVA. Solo se registra el valor base de la mercadería devuelta.</div>
+
+  <h4>Descuento sobre Compras (NO afecta IVA)</h4>
+  <p>Pagamos anticipadamente Q.10,000 que debíamos por mercadería. Nos conceden el 6% de descuento.</p>
+  <p>Descuento: 10,000 × 6% = Q.600 · Se pagan: Q.10,000 − Q.600 = Q.9,400</p>
+  <div class="partida">
+    <div class="partida-header">Descuento sobre Compras — Pago anticipado</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Proveedores</td><td class="monto debe">Q 10,000.00</td><td></td></tr>
+      <tr><td class="cuenta-abono">Caja y Bancos</td><td></td><td class="monto haber">Q 9,400.00</td></tr>
+      <tr><td class="cuenta-abono">Descuentos s/Compras</td><td></td><td class="monto haber">Q 600.00</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ========== SECCIÓN 5: CAJA CHICA ========== -->
+<div class="seccion" id="sec5">
+  <div class="sec-header">
+    <span class="sec-num">TEMA 06</span>
+    <div>
+      <div class="sec-title">Cuenta Caja Chica</div>
+      <div class="sec-sub">Fondo para gastos menores — creación, reintegro y liquidación</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>¿Qué es la Caja Chica?</h3>
+    <p>Es un fondo fijo de efectivo para cubrir gastos menores del día a día (fotocopias, combustible, agua, etc.) cuando pagar con cheque sería impráctico. Siempre se necesitan comprobantes. Todos los gastos <strong>incluyen IVA</strong>.</p>
+  </div>
+
+  <h4>Las 3 fases de la Caja Chica</h4>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">1</div>
+      <div class="paso-titulo">CREACIÓN — Se autoriza el fondo</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body">
+      <p>El 03/dic/20XX se crea fondo de Q.3,000 a cargo de la Srita. Vanesa Solares.</p>
+      <div class="partida">
+        <div class="partida-header">Creación Caja Chica</div>
+        <table>
+          <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+          <tr><td class="cuenta-cargo">Caja Chica</td><td class="monto debe">Q 3,000.00</td><td></td></tr>
+          <tr><td class="cuenta-abono">Caja y Bancos</td><td></td><td class="monto haber">Q 3,000.00</td></tr>
+        </table>
+      </div>
+      <div class="tip"><strong>Importante</strong>En la creación NO hay gastos ni IVA. Solo se traslada efectivo de Caja y Bancos a Caja Chica.</div>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">2</div>
+      <div class="paso-titulo">REINTEGRO — Se reponen los fondos gastados</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body">
+      <p>El 18/dic la Srita. Solares solicita reintegro con facturas: Empagua Q.150 · Periódico Q.300 · Aceites Q.790 · Teléfono Q.475 · Vale préstamo empleado Q.600. Total: Q.2,315</p>
+      <p>Separando IVA: Q.2,315 ÷ 1.12 = Q.2,066.07 base + Q.248.93 IVA. El vale de préstamo al empleado NO lleva IVA.</p>
+      <div class="aviso"><strong>⚠️ Nota sobre vales</strong>Un vale de préstamo a empleado NO es un gasto de la empresa; es un anticipo. Se registra como Cuenta por Cobrar a empleados, no como gasto.</div>
+      <div class="partida">
+        <div class="partida-header">Reintegro Caja Chica — 18/dic</div>
+        <table>
+          <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+          <tr><td class="cuenta-cargo">Agua, Luz y Teléfono (Q.150+Q.475 base)</td><td class="monto debe">Q 558.04</td><td></td></tr>
+          <tr><td class="cuenta-cargo">Publicidad y Propaganda (base Q.300)</td><td class="monto debe">Q 267.86</td><td></td></tr>
+          <tr><td class="cuenta-cargo">Combustibles y Lubricantes (base Q.790)</td><td class="monto debe">Q 705.36</td><td></td></tr>
+          <tr><td class="cuenta-cargo">Cuentas por Cobrar Empleados (vale)</td><td class="monto debe">Q 600.00</td><td></td></tr>
+          <tr><td class="cuenta-cargo">IVA por Cobrar</td><td class="monto debe">Q 183.75</td><td></td></tr>
+          <tr><td class="cuenta-abono">Caja y Bancos</td><td></td><td class="monto haber">Q 2,315.00</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">3</div>
+      <div class="paso-titulo">LIQUIDACIÓN — Cierre o arqueo del fondo</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body">
+      <p>Arqueo 31/dic: Efectivo Q.1,810 · Facturas varios del propietario Q.790 · Extracción basura Q.125 · Escobas y limpieza Q.275. Total respaldado: Q.3,000 ✓</p>
+      <p>Las facturas del propietario son gastos personales → van a <strong>Cuenta Particular</strong>. Las demás son gastos de la empresa.</p>
+      <div class="partida">
+        <div class="partida-header">Liquidación Caja Chica — 31/dic</div>
+        <table>
+          <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+          <tr><td class="cuenta-cargo">Cuenta Particular (gastos propietario)</td><td class="monto debe">Q 705.36</td><td></td></tr>
+          <tr><td class="cuenta-cargo">Útiles y Enseres (base escobas+basura)</td><td class="monto debe">Q 357.14</td><td></td></tr>
+          <tr><td class="cuenta-cargo">IVA por Cobrar</td><td class="monto debe">Q 127.50</td><td></td></tr>
+          <tr><td class="cuenta-abono">Caja Chica</td><td></td><td class="monto haber">Q 1,190.00</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECCIÓN 6: SUELDOS ========== -->
+<div class="seccion" id="sec6">
+  <div class="sec-header">
+    <span class="sec-num">TEMA 07</span>
+    <div>
+      <div class="sec-title">Planilla de Sueldos</div>
+      <div class="sec-sub">IGSS, ISR, Bono 14, Aguinaldo y Prestaciones — Ley guatemalteca</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Componentes de la planilla en Guatemala</h3>
+    <p>Al registrar sueldos se deben considerar las deducciones y las contribuciones patronales según la ley:</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Deducciones del trabajador (cuota laboral)</h3>
+      <ul>
+        <li><strong>IGSS Laboral: 4.83%</strong> sobre el sueldo base</li>
+        <li><strong>ISR (Retención): 5%</strong> (para efectos didácticos del curso)</li>
+        <li><strong>Bono Incentivo: Q.250</strong> mensual (no es base para IGSS)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Cuotas patronales (gasto de la empresa)</h3>
+      <ul>
+        <li><strong>IGSS Patronal: 12.67%</strong> sobre el sueldo base</li>
+        <li><strong>IRTRA: 1%</strong> sobre el sueldo base</li>
+        <li><strong>INTECAP: 1%</strong> sobre el sueldo base</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Prestaciones laborales (provisiones mensuales)</h3>
+    <ul>
+      <li><strong>Bono 14</strong>: 1 sueldo al año → provisionar 1/12 mensual = 8.33%</li>
+      <li><strong>Aguinaldo</strong>: 1 sueldo al año → provisionar 1/12 mensual = 8.33%</li>
+      <li><strong>Indemnización</strong>: 1 sueldo al año → provisionar 1/12 mensual = 8.33%</li>
+      <li><strong>Vacaciones</strong>: 15 días hábiles → provisionar = 4.17%</li>
+    </ul>
+  </div>
+
+  <h4>Ejemplo: Pago de sueldos</h4>
+  <p>Sueldo mensual total bruto: Q.10,000. Bono Incentivo incluido: Q.250.</p>
+  <p>IGSS laboral: 10,000 × 4.83% = Q.483 · ISR retenido: 10,000 × 5% = Q.500 · <strong>Líquido a pagar: 10,000 + 250 − 483 − 500 = Q.9,267</strong></p>
+
+  <div class="partida">
+    <div class="partida-header">Partida de Sueldos — 31/01/20XX</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Sueldos de Venta / Admin</td><td class="monto debe">Q 10,000.00</td><td></td></tr>
+      <tr><td class="cuenta-cargo">Bono Incentivo</td><td class="monto debe">Q 250.00</td><td></td></tr>
+      <tr><td class="cuenta-abono">IGSS por Pagar (cuota laboral 4.83%)</td><td></td><td class="monto haber">Q 483.00</td></tr>
+      <tr><td class="cuenta-abono">ISR por Pagar (retención 5%)</td><td></td><td class="monto haber">Q 500.00</td></tr>
+      <tr><td class="cuenta-abono">Caja y Bancos (líquido)</td><td></td><td class="monto haber">Q 9,267.00</td></tr>
+    </table>
+  </div>
+
+  <div class="partida">
+    <div class="partida-header">Cuotas Patronales — 31/01/20XX</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Cuotas Patronales (12.67% + 1% + 1% = 14.67%)</td><td class="monto debe">Q 1,467.00</td><td></td></tr>
+      <tr><td class="cuenta-abono">IGSS por Pagar (cuota patronal)</td><td></td><td class="monto haber">Q 1,267.00</td></tr>
+      <tr><td class="cuenta-abono">IRTRA por Pagar</td><td></td><td class="monto haber">Q 100.00</td></tr>
+      <tr><td class="cuenta-abono">INTECAP por Pagar</td><td></td><td class="monto haber">Q 100.00</td></tr>
+    </table>
+  </div>
+  <div class="tip"><strong>📌 Pago de retenciones</strong>El mes siguiente se pagan las retenciones de ISR a la SAT y las cuotas del IGSS a la institución. Esas partidas son: Cargo a "ISR por Pagar" / Abono a "Caja y Bancos".</div>
+</div>
+
+<!-- ========== SECCIÓN 7: CUENTA PARTICULAR ========== -->
+<div class="seccion" id="sec7">
+  <div class="sec-header">
+    <span class="sec-num">TEMA 08</span>
+    <div>
+      <div class="sec-title">Cuenta Particular o Personal</div>
+      <div class="sec-sub">Registro de gastos personales del propietario separados del negocio</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>¿Para qué sirve esta cuenta?</h3>
+    <p>Los gastos personales del propietario (compras familiares, vacaciones, etc.) <strong>NO son gastos del negocio</strong> y no pueden deducirse para efectos del ISR. Para llevar una contabilidad limpia, se registran en la <strong>Cuenta Particular</strong>, que es una cuenta de naturaleza deudora que reduce el capital del propietario al cierre del período.</p>
+  </div>
+
+  <h4>Ejemplo resuelto</h4>
+  <p>El 17/dic/20XX el Sr. Julio Monterroso, propietario de "El Buen Vestir", retira Q.9,000 del negocio para gastos navideños familiares.</p>
+  <div class="partida">
+    <div class="partida-header">Retiro del propietario para gastos personales</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Monterroso — Cuenta Particular</td><td class="monto debe">Q 9,000.00</td><td></td></tr>
+      <tr><td class="cuenta-abono">Caja y Bancos</td><td></td><td class="monto haber">Q 9,000.00</td></tr>
+    </table>
+  </div>
+
+  <h4>Cierre de la Cuenta Particular contra Capital</h4>
+  <p>Al cierre del ejercicio, el Capital era Q.60,000 y la ganancia Q.11,500. La Cuenta Particular tiene saldo de Q.9,000.</p>
+  <div class="partida">
+    <div class="partida-header">Cierre de Cuenta Particular — 31/dic</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Monterroso — Cuenta Capital</td><td class="monto debe">Q 9,000.00</td><td></td></tr>
+      <tr><td class="cuenta-abono">Monterroso — Cuenta Particular</td><td></td><td class="monto haber">Q 9,000.00</td></tr>
+    </table>
+  </div>
+  <div class="saldo-box">
+    <div class="saldo-item" style="background:#ede9fe;color:#7c3aed;">
+      <div class="s-titulo">Capital inicial</div><div class="s-monto">Q 60,000</div>
+    </div>
+    <div class="saldo-item deudor">
+      <div class="s-titulo">+ Utilidad</div><div class="s-monto">Q 11,500</div>
+    </div>
+    <div class="saldo-item acreedor">
+      <div class="s-titulo">− Retiro personal</div><div class="s-monto">Q 9,000</div>
+    </div>
+    <div class="saldo-item" style="background:#dbeafe;color:#1e3a5f;">
+      <div class="s-titulo">Capital final</div><div class="s-monto">Q 62,500</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SECCIÓN 8: AJUSTES ========== -->
+<div class="seccion" id="sec8">
+  <div class="sec-header">
+    <span class="sec-num">TEMA 09</span>
+    <div>
+      <div class="sec-title">Ajustes Contables</div>
+      <div class="sec-sub">Pagos anticipados, cobros anticipados, depreciaciones y amortizaciones</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>¿Qué son los ajustes?</h3>
+    <p>Son correcciones al 31 de diciembre para imputar gastos e ingresos al período que corresponde. Se realizan cuando algunos ítems se pagaron o cobraron por adelantado y no todo el valor le pertenece al año que termina.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Pagos Anticipados</h3>
+      <p>Gastos pagados por adelantado (seguros, alquileres). Al inicio se cargan a "Seguros/Alquileres Pagados por Anticipado" (activo). El ajuste reconoce solo el período consumido.</p>
+      <p><strong>Fórmula:</strong> Valor total ÷ 12 meses × meses consumidos = gasto real del período.</p>
+    </div>
+    <div class="card">
+      <h3>Cobros Anticipados</h3>
+      <p>Ingresos recibidos antes de prestar el servicio (alquileres cobrados por adelantado). Al inicio se abonan a "Alquileres Cobrados por Anticipado" (pasivo). El ajuste reconoce el ingreso devengado.</p>
+    </div>
+  </div>
+
+  <h4>Ejemplo — Seguro pagado por anticipado</h4>
+  <p>Seguro Q.24,000 contratado el 01/mar, cubre 1 año (hasta 28/feb del año siguiente). Al 31/dic han pasado 10 meses.</p>
+  <p>Gasto del período: Q.24,000 ÷ 12 × 10 = <strong>Q.20,000</strong></p>
+  <div class="partida">
+    <div class="partida-header">Ajuste — Seguro consumido en el período</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Gastos de Seguro</td><td class="monto debe">Q 20,000.00</td><td></td></tr>
+      <tr><td class="cuenta-abono">Seguros Pagados por Anticipado</td><td></td><td class="monto haber">Q 20,000.00</td></tr>
+    </table>
+  </div>
+
+  <h4>Depreciaciones (Decreto 26-92, Art. 19 — ISR)</h4>
+  <div class="tabla-cuentas">
+    <table>
+      <tr><th>Activo</th><th>Tasa anual</th><th>Método</th></tr>
+      <tr><td>Edificios</td><td>5%</td><td>Línea Recta</td></tr>
+      <tr><td>Mobiliario y Equipo</td><td>20%</td><td>Línea Recta</td></tr>
+      <tr><td>Maquinaria</td><td>20%</td><td>Línea Recta</td></tr>
+      <tr><td>Vehículos</td><td>20%</td><td>Línea Recta</td></tr>
+      <tr><td>Herramientas</td><td>25%</td><td>Línea Recta</td></tr>
+      <tr><td>Equipo de Cómputo</td><td>33.33%</td><td>Línea Recta</td></tr>
+    </table>
+  </div>
+  <p><strong>Fórmula línea recta:</strong></p>
+  <div class="formula-box">
+    <span class="label">Depreciación anual</span>
+    <div class="expr">Valor del activo × % de depreciación = Depreciación anual</div>
+    <div class="desc">Ej: Vehículo Q.45,000 × 20% = Q.9,000 anuales (Q.750/mes)</div>
+  </div>
+  <div class="partida">
+    <div class="partida-header">Ajuste — Depreciación de Vehículos (anual)</div>
+    <table>
+      <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+      <tr><td class="cuenta-cargo">Gastos de Depreciación</td><td class="monto debe">Q 9,000.00</td><td></td></tr>
+      <tr><td class="cuenta-abono">Depreciación Acumulada — Vehículos</td><td></td><td class="monto haber">Q 9,000.00</td></tr>
+    </table>
+  </div>
+  <div class="tip"><strong>📌 Depreciación Acumulada</strong>Es una cuenta de ACTIVO con saldo ACREEDOR (contra-naturaleza deliberada). Reduce el valor del activo en el Balance. No se toca el activo original; la acumulada lo va "restando".</div>
+</div>
+
+<!-- ========== SECCIÓN 9: EJERCICIO GENERAL ========== -->
+<div class="seccion" id="sec9">
+  <div class="sec-header">
+    <span class="sec-num">EJERCICIO</span>
+    <div>
+      <div class="sec-title">Ejercicio General Integrado</div>
+      <div class="sec-sub">Resolución paso a paso del ejercicio del Sr. Gerónimo Gutiérrez — "El Chivito Veloz"</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📋 Datos del ejercicio</h3>
+    <p>El 04/ene, el Sr. Gerónimo Gutiérrez apertura "El Chivito Veloz" aportando:</p>
+    <ul>
+      <li>Efectivo: Q.45,000 · Mercadería: Q.15,000 · Escritorio y 2 sillas: Q.18,000 · Computadora: Q.8,000 · 2 Vehículos: Q.32,500</li>
+      <li>Deudas: Mercadería Q.7,000 · Muebles Q.6,000 · Vehículos Q.12,500 (4 letras de cambio)</li>
+    </ul>
+  </div>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">1</div>
+      <div class="paso-titulo">PARTIDA DE APERTURA — 04/01</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body open">
+      <p>Total activos: 45,000 + 15,000 + 18,000 + 8,000 + 32,500 = <strong>Q.118,500</strong></p>
+      <p>Total pasivos: 7,000 + 6,000 + 12,500 = <strong>Q.25,500</strong></p>
+      <p>Capital = 118,500 − 25,500 = <strong>Q.93,000</strong></p>
+      <div class="partida">
+        <div class="partida-header">P#1 — 04/01 — Apertura "El Chivito Veloz"</div>
+        <table>
+          <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+          <tr><td class="cuenta-cargo">Caja y Bancos</td><td class="monto debe">Q 45,000.00</td><td></td></tr>
+          <tr><td class="cuenta-cargo">Mercaderías</td><td class="monto debe">Q 15,000.00</td><td></td></tr>
+          <tr><td class="cuenta-cargo">Mobiliario y Equipo</td><td class="monto debe">Q 18,000.00</td><td></td></tr>
+          <tr><td class="cuenta-cargo">Equipo de Cómputo</td><td class="monto debe">Q 8,000.00</td><td></td></tr>
+          <tr><td class="cuenta-cargo">Vehículos</td><td class="monto debe">Q 32,500.00</td><td></td></tr>
+          <tr><td class="cuenta-abono">Proveedores (mercadería)</td><td></td><td class="monto haber">Q 7,000.00</td></tr>
+          <tr><td class="cuenta-abono">Proveedores (muebles)</td><td></td><td class="monto haber">Q 6,000.00</td></tr>
+          <tr><td class="cuenta-abono">Documentos por Pagar (4 letras vehículos)</td><td></td><td class="monto haber">Q 12,500.00</td></tr>
+          <tr><td class="cuenta-abono">Gutiérrez — Cuenta Capital</td><td></td><td class="monto haber">Q 93,000.00</td></tr>
+          <tr><td><strong>TOTALES</strong></td><td class="monto debe"><strong>Q 118,500.00</strong></td><td class="monto haber"><strong>Q 118,500.00</strong></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">2</div>
+      <div class="paso-titulo">Día 08 — Compra mercadería al crédito Q.12,600</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body">
+      <p>Q.12,600 ÷ 1.12 = Q.11,250 base · IVA = Q.1,350</p>
+      <div class="partida">
+        <div class="partida-header">P#2 — 08/01</div>
+        <table>
+          <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+          <tr><td class="cuenta-cargo">Compras</td><td class="monto debe">Q 11,250.00</td><td></td></tr>
+          <tr><td class="cuenta-cargo">IVA por Cobrar</td><td class="monto debe">Q 1,350.00</td><td></td></tr>
+          <tr><td class="cuenta-abono">Proveedores</td><td></td><td class="monto haber">Q 12,600.00</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">3</div>
+      <div class="paso-titulo">Día 10 — Venta al contado Q.16,800</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body">
+      <p>Q.16,800 ÷ 1.12 = Q.15,000 venta · IVA = Q.1,800</p>
+      <div class="partida">
+        <div class="partida-header">P#3 — 10/01</div>
+        <table>
+          <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+          <tr><td class="cuenta-cargo">Caja y Bancos</td><td class="monto debe">Q 16,800.00</td><td></td></tr>
+          <tr><td class="cuenta-abono">Ventas</td><td></td><td class="monto haber">Q 15,000.00</td></tr>
+          <tr><td class="cuenta-abono">IVA por Pagar</td><td></td><td class="monto haber">Q 1,800.00</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">4</div>
+      <div class="paso-titulo">Día 12 — Cancela 1 letra de cambio del vehículo</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body">
+      <p>Valor de cada letra: Q.12,500 ÷ 4 = <strong>Q.3,125</strong></p>
+      <div class="partida">
+        <div class="partida-header">P#4 — 12/01</div>
+        <table>
+          <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+          <tr><td class="cuenta-cargo">Documentos por Pagar</td><td class="monto debe">Q 3,125.00</td><td></td></tr>
+          <tr><td class="cuenta-abono">Caja y Bancos</td><td></td><td class="monto haber">Q 3,125.00</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">5</div>
+      <div class="paso-titulo">Día 15 — Venta al crédito Q.8,848</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body">
+      <p>Q.8,848 ÷ 1.12 = Q.7,900 venta · IVA = Q.948</p>
+      <div class="partida">
+        <div class="partida-header">P#5 — 15/01</div>
+        <table>
+          <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+          <tr><td class="cuenta-cargo">Clientes</td><td class="monto debe">Q 8,848.00</td><td></td></tr>
+          <tr><td class="cuenta-abono">Ventas</td><td></td><td class="monto haber">Q 7,900.00</td></tr>
+          <tr><td class="cuenta-abono">IVA por Pagar</td><td></td><td class="monto haber">Q 948.00</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">6</div>
+      <div class="paso-titulo">Día 19 — Paga 50% de compra del día 08</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body">
+      <p>50% de Q.12,600 = <strong>Q.6,300</strong></p>
+      <div class="partida">
+        <div class="partida-header">P#6 — 19/01</div>
+        <table>
+          <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+          <tr><td class="cuenta-cargo">Proveedores</td><td class="monto debe">Q 6,300.00</td><td></td></tr>
+          <tr><td class="cuenta-abono">Caja y Bancos</td><td></td><td class="monto haber">Q 6,300.00</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">7</div>
+      <div class="paso-titulo">Día 22 — Cancela Q.4,000 del mueble de apertura</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body">
+      <div class="partida">
+        <div class="partida-header">P#7 — 22/01</div>
+        <table>
+          <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+          <tr><td class="cuenta-cargo">Proveedores</td><td class="monto debe">Q 4,000.00</td><td></td></tr>
+          <tr><td class="cuenta-abono">Caja y Bancos</td><td></td><td class="monto haber">Q 4,000.00</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">8</div>
+      <div class="paso-titulo">Día 26 — Compra Q.39,200 (70% crédito / 30% contado)</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body">
+      <p>Q.39,200 ÷ 1.12 = Q.35,000 base · IVA = Q.4,200</p>
+      <p>Crédito: 39,200 × 70% = Q.27,440 · Contado: 39,200 × 30% = Q.11,760</p>
+      <div class="partida">
+        <div class="partida-header">P#8 — 26/01</div>
+        <table>
+          <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+          <tr><td class="cuenta-cargo">Compras</td><td class="monto debe">Q 35,000.00</td><td></td></tr>
+          <tr><td class="cuenta-cargo">IVA por Cobrar</td><td class="monto debe">Q 4,200.00</td><td></td></tr>
+          <tr><td class="cuenta-abono">Proveedores</td><td></td><td class="monto haber">Q 27,440.00</td></tr>
+          <tr><td class="cuenta-abono">Caja y Bancos</td><td></td><td class="monto haber">Q 11,760.00</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">9</div>
+      <div class="paso-titulo">REGULARIZACIÓN DEL IVA — 31/01</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body">
+      <p><strong>IVA por Cobrar acumulado:</strong> P#2 Q.1,350 + P#8 Q.4,200 = <strong>Q.5,550</strong></p>
+      <p><strong>IVA por Pagar acumulado:</strong> P#3 Q.1,800 + P#5 Q.948 = <strong>Q.2,748</strong></p>
+      <p>IVA por Cobrar (Q.5,550) > IVA por Pagar (Q.2,748) → <strong>Saldo a favor: Q.2,802</strong> se traslada al siguiente período.</p>
+      <div class="partida">
+        <div class="partida-header">Regularización IVA — 31/01/20XX</div>
+        <table>
+          <tr><td class="col-label">Cuenta</td><td class="col-label monto">DEBE</td><td class="col-label monto">HABER</td></tr>
+          <tr><td class="cuenta-cargo">IVA por Pagar</td><td class="monto debe">Q 2,748.00</td><td></td></tr>
+          <tr><td class="cuenta-abono">IVA por Cobrar</td><td></td><td class="monto haber">Q 2,748.00</td></tr>
+        </table>
+      </div>
+      <div class="tip"><strong>Resultado final</strong>IVA por Pagar = Q.0. IVA por Cobrar restante = Q.5,550 − Q.2,748 = <strong>Q.2,802</strong> a favor de la empresa (se traslada a febrero).</div>
+    </div>
+  </div>
+
+  <div class="paso">
+    <div class="paso-header" onclick="togglePaso(this)">
+      <div class="paso-num">10</div>
+      <div class="paso-titulo">BALANCE DE SALDOS — 31/01</div>
+      <div class="paso-flecha">▼</div>
+    </div>
+    <div class="paso-body">
+      <div class="tabla-cuentas">
+        <table>
+          <tr><th>Cuenta</th><th>Saldo Deudor (DEBE)</th><th>Saldo Acreedor (HABER)</th></tr>
+          <tr><td>Caja y Bancos</td><td>Q 36,615.00</td><td></td></tr>
+          <tr><td>Mercaderías</td><td>Q 15,000.00</td><td></td></tr>
+          <tr><td>Mobiliario y Equipo</td><td>Q 18,000.00</td><td></td></tr>
+          <tr><td>Equipo de Cómputo</td><td>Q 8,000.00</td><td></td></tr>
+          <tr><td>Vehículos</td><td>Q 32,500.00</td><td></td></tr>
+          <tr><td>Compras</td><td>Q 46,250.00</td><td></td></tr>
+          <tr><td>IVA por Cobrar</td><td>Q 2,802.00</td><td></td></tr>
+          <tr><td>Clientes</td><td>Q 8,848.00</td><td></td></tr>
+          <tr><td>Proveedores</td><td></td><td>Q 27,740.00</td></tr>
+          <tr><td>Documentos por Pagar</td><td></td><td>Q 9,375.00</td></tr>
+          <tr><td>Gutiérrez — Cuenta Capital</td><td></td><td>Q 93,000.00</td></tr>
+          <tr><td>Ventas</td><td></td><td>Q 22,900.00</td></tr>
+          <tr><td><strong>TOTALES</strong></td><td><strong>Q 168,015.00</strong></td><td><strong>Q 153,015.00</strong></td></tr>
+        </table>
+      </div>
+      <div class="aviso"><strong>⚠️ Nota importante</strong>El Balance de Saldos NO necesariamente cuadra (DEBE ≠ HABER) porque mezcla activos/gastos en el DEBE y pasivos/capital/ingresos en el HABER. Para verificar se usa la Hoja de Trabajo (o Estado de Resultados + Balance General). La partida de apertura fue con activos sin IVA separado, lo cual es correcto para bienes propios aportados.</div>
+    </div>
+  </div>
+
+</div>
+<!-- FIN SECCIONES -->
+
+</div><!-- main -->
+
+<a href="#" class="scroll-top" title="Ir arriba">↑</a>
+
+<script>
+// Nav
+function mostrar(idx, btn) {
+  document.querySelectorAll('.seccion').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec'+idx).classList.add('visible');
+  btn.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// Pasos accordion
+function togglePaso(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.paso-flecha');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// Calculadora IVA
+let calcMode = 'extraer';
+function setCalcMode(mode, btn) {
+  calcMode = mode;
+  document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('on'));
+  btn.classList.add('on');
+  const lbl = document.getElementById('calc-lbl');
+  lbl.textContent = mode === 'extraer' ? 'Monto total (con IVA incluido)' : 'Precio base (sin IVA)';
+  document.getElementById('calc-result').classList.remove('show');
+  document.getElementById('calc-input').value = '';
+}
+
+function calcularIVA() {
+  const val = parseFloat(document.getElementById('calc-input').value);
+  if (!val || val <= 0) { alert('Ingresa un monto válido'); return; }
+  const res = document.getElementById('calc-result');
+  const Q = v => 'Q ' + v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  if (calcMode === 'extraer') {
+    const base = val / 1.12;
+    const iva = val - base;
+    document.getElementById('r1-lbl').textContent = 'Precio base (sin IVA)';
+    document.getElementById('r1-val').textContent = Q(base);
+    document.getElementById('r2-val').textContent = Q(iva);
+    document.getElementById('r3-lbl').textContent = 'Total con IVA (confirmación)';
+    document.getElementById('r3-val').textContent = Q(val);
+  } else {
+    const iva = val * 0.12;
+    const total = val + iva;
+    document.getElementById('r1-lbl').textContent = 'Precio base (lo ingresado)';
+    document.getElementById('r1-val').textContent = Q(val);
+    document.getElementById('r2-val').textContent = Q(iva);
+    document.getElementById('r3-lbl').textContent = 'Total a pagar (con IVA)';
+    document.getElementById('r3-val').textContent = Q(total);
+  }
+  res.classList.add('show');
+}
+</script>
+</body>
+</html>
